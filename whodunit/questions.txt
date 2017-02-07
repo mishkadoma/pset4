@@ -1,11 +1,11 @@
 1.  TODO
 2.  TODO
 3.  TODO
-4.  BM in ascii or 424d in hex;
-5.  TODO
-6.  TODO
-7.  TODO
-8.  TODO
+4.  "BM" in ascii or "424d" in hex;
+5.  bfSize is the size of a whole BM file, while the biSize is size of bitmapinfoheader itself.
+6.  if means that bitmap is presented by bits top-to-bottom.
+7.  biBitCount
+8.  
 9.  TODO
 10. TODO
 11. TODO
