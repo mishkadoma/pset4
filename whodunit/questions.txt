@@ -1,7 +1,7 @@
 1.  TODO
 2.  TODO
 3.  TODO
-4.  TODO
+4.  BM in ascii or 424d in hex;
 5.  TODO
 6.  TODO
 7.  TODO
