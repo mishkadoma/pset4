@@ -1,7 +1,7 @@
 1.  TODO
 2.  TODO
-3.  TODO
-4.  "BM" in ascii or "424d" in hex;
+3.  1, 4, 4, 2.
+4.  "BM" in ascii or "424d" in hex.
 5.  bfSize is the size of a whole BM file, while the biSize is size of bitmapinfoheader itself.
 6.  if means that bitmap is presented by bits top-to-bottom.
 7.  biBitCount
@@ -9,4 +9,4 @@
 9.  because we are reading 1 item of memory which size is "sizeof(BITMAPFILE(INFO)HEADER)".
 10. 3
 11. change file position indicator
-12. offset by "fseek" starts relate to current position indecator.  
+12. offset by "fseek" starts relate to current position indecator.
