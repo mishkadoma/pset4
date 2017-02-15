@@ -9,4 +9,4 @@
 9.  because we are reading 1 item of memory which size is "sizeof(BITMAPFILE(INFO)HEADER)".
 10. 3
 11. change file position indicator
-12. offset by "fseek" starts relate to current position indecator.
+12. offset by "fseek" starts relate to current position indicator.
