@@ -1,5 +1,5 @@
-1.  TODO
-2.  TODO
+1.  a library which purpose is declaring several variable types with defined sizes.
+2.  different operating systems have inconstant value of variable types. stdint makes this types constant sizes.
 3.  1, 4, 4, 2.
 4.  "BM" in ascii or "424d" in hex.
 5.  bfSize is the size of a whole BM file, while the biSize is size of bitmapinfoheader itself.
