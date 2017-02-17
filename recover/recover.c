@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.c>
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
   FILE *input = fopen(infile, "r");
   if (input == NULL)
   {
-    fprintf(stderr, "couldn't open %s.\n", infile)
+    fprintf(stderr, "couldn't open %s.\n", infile);
+    return 2;
   }
 }
