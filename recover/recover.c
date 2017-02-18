@@ -17,4 +17,7 @@ int main(int argc, char *argv[])
     fprintf(stderr, "couldn't open %s.\n", infile);
     return 2;
   }
+
+
+  fread()
 }
