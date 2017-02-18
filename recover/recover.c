@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
   if (argc != 2)
   {
-    fprintf(stderr, "Usare: ./recover infile")
+    fprintf(stderr, "Usage: ./recover image")
     return 1;
   }
 
