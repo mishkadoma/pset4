@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   if (argc != 3)
   {
     printf("Usage: ./resize small.bmp large.bmp");
@@ -26,7 +26,7 @@ int int main(int argc, char *argv[]) {
     fprintf(stderr, "Couldn't open %s\n", *large);
     return 3;
   }
-  
+
 
 
   return 0;
