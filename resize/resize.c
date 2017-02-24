@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 
 
 //open both files;
-  FILE *inprt = fopen(small, "r");
+  FILE *inptr = fopen(small, "r");
   if (inptr == NULL)
   {
     fprintf(stderr, "Couldn't open %s\n", *small);
