@@ -8,8 +8,8 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  char *small = argc[1];
-  char *large = argc[2];
+  char *small = argv[1];
+  char *large = argv[2];
 
 
 //open both files;
