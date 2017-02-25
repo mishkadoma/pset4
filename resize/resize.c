@@ -30,9 +30,26 @@ int main(int argc, char *argv[]) {
   }
 
   BITMAPFILEHEADER bf;
-  fread(&bf, size(BITMAPFILEHEADER), 1, smptr);
+  fread(&bf, sizeof(BITMAPFILEHEADER), 1, smptr);
 
-  BITMAPINFOHEADER bf;
+  BITMAPINFOHEADER bi;
+  fread(&bi, sizeof(BITMAPINFOHEADER), 1, smptr);
+
+  if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 ||
+      bi.biBitCount != 24 || bi.biCompression != 0)
+  {
+      fclose(larptr);
+      fclose(smptr);
+      fprintf(stderr, "Unsupported file format.\n");
+      return 4;
+  }
+
+  fwrite(&bf, BITMAPFILEHEADER, 1, larptr);
+
+  fwrite(&bf, BITMAPINFOHEADER, 1, larptr);
+
+  
+
 
   return 0;
 }
