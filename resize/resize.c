@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
   if (argc != 3)
   {
-    printf("Usage: ./resize small.bmp large.bmp");
+    printf("Usage: ./resize small.bmp large.bmp\n");
     return 1;
   }
 
@@ -16,14 +16,14 @@ int main(int argc, char *argv[]) {
   FILE *inptr = fopen(small, "r");
   if (inptr == NULL)
   {
-    fprintf(stderr, "Couldn't open %s\n", *small);
+    fprintf(stderr, "Couldn't open %d\n", *small);
     return 2;
   }
 
   FILE *outptr = fopen(large, "w");
   if (outptr == NULL)
   {
-    fprintf(stderr, "Couldn't open %s\n", *large);
+    fprintf(stderr, "Couldn't open %d\n", *large);
     return 3;
   }
 
