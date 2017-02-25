@@ -13,15 +13,15 @@ int main(int argc, char *argv[]) {
 
 
 //open both files;
-  FILE *inptr = fopen(small, "r");
-  if (inptr == NULL)
+  FILE *smptr = fopen(small, "r");
+  if (smptr == NULL)
   {
     fprintf(stderr, "Couldn't open %d\n", *small);
     return 2;
   }
 
-  FILE *outptr = fopen(large, "w");
-  if (outptr == NULL)
+  FILE *larptr = fopen(large, "w");
+  if (larptr == NULL)
   {
     fprintf(stderr, "Couldn't open %d\n", *large);
     return 3;
