@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "bmp.h"
+
 int main(int argc, char *argv[]) {
   if (argc != 3)
   {
@@ -27,7 +29,10 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
+  BITMAPFILEHEADER bf;
+  fread(&bf, size(BITMAPFILEHEADER), 1, smptr);
 
+  BITMAPINFOHEADER bf;
 
   return 0;
 }
