@@ -52,17 +52,28 @@ int main(int argc, char *argv[]) {
 
   int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
+  //**
+  bi.biHeight = bi.biHeight * atoi(multiplier);
+  bi.biWidth *= atoi(multiplier);
+
+  //**
+
+
   for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
   {
+    RGBTRIPLE triple;
       for (int j = 0; j < bi.biWidth; j++)
       {
-          RGBTRIPLE triple;
+
 
           fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
 
           for (int k = 0, m = atoi(multiplier); k < m; k++)
             fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
       }
+
+      for (int p = 0, m = atoi(multiplier); p < m; p++)
+        fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
 
       fseek(smptr, padding, SEEK_CUR);
 
