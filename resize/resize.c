@@ -46,30 +46,31 @@ int main(int argc, char *argv[]) {
       return 4;
   }
 
-  fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, larptr);
 
+  //**
+  bi.biHeight *= atoi(multiplier);
+  bi.biWidth *= atoi(multiplier);
+  bf.bfSize = 14 + 40 + 3*(bi.biWidth*bi.biHeight*(atoi(multiplier)^2));
+
+
+  //**
+
+
+  fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, larptr);
   fwrite(&bf, sizeof(BITMAPINFOHEADER), 1, larptr);
 
   int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
-  //**
-  bi.biHeight = bi.biHeight * atoi(multiplier);
-  bi.biWidth *= atoi(multiplier);
-
-  //**
-
 
   for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
   {
-    RGBTRIPLE triple;
       for (int j = 0; j < bi.biWidth; j++)
       {
+        RGBTRIPLE triple;
+        fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
 
-
-          fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
-
-          for (int k = 0, m = atoi(multiplier); k < m; k++)
-            fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
+        for (int k = 0, m = atoi(multiplier); k < m; k++)
+          fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
       }
 
       for (int p = 0, m = atoi(multiplier); p < m; p++)
@@ -80,9 +81,6 @@ int main(int argc, char *argv[]) {
       for (int k = 0; k < padding; k++)
           fputc(0x00, larptr);
   }
-
-
-
 
   return 0;
 }
