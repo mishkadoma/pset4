@@ -47,11 +47,14 @@ int main(int argc, char *argv[]) {
   }
 
 
+
+
   //**
   bi.biHeight *= atoi(multiplier);
   bi.biWidth *= atoi(multiplier);
-  bf.bfSize = 14 + 40 + 3*(bi.biWidth*bi.biHeight*(atoi(multiplier)^2));
-  bi.biSize *= atoi(multiplier);
+  int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+  bi.biSizeImage *= ((sizeof(RGBTRIPLE) * bi.biWidth) + padding) * abs(bi.biHeight);
+  bf.bfSize = bi.biSizeImage + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
 
 
   //**
@@ -60,7 +63,6 @@ int main(int argc, char *argv[]) {
   fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, larptr);
   fwrite(&bf, sizeof(BITMAPINFOHEADER), 1, larptr);
 
-  int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
 
   for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
