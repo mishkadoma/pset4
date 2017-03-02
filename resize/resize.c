@@ -51,6 +51,7 @@ int main(int argc, char *argv[]) {
   bi.biHeight *= atoi(multiplier);
   bi.biWidth *= atoi(multiplier);
   bf.bfSize = 14 + 40 + 3*(bi.biWidth*bi.biHeight*(atoi(multiplier)^2));
+  bi.biSize *= atoi(multiplier);
 
 
   //**
@@ -64,12 +65,17 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
   {
+      RGBTRIPLE triple;
       for (int j = 0; j < bi.biWidth; j++)
       {
-        RGBTRIPLE triple;
-        fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
 
-        for (int k = 0, m = atoi(multiplier); k < m; k++)
+        for (int k = 0; k < atoi(multiplier); k++)
+        {
+          fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
+          fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
+        }
+
+
           fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
       }
 
