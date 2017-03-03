@@ -46,8 +46,7 @@ int main(int argc, char *argv[]) {
       return 4;
   }
 
-
-
+  int small_padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
   //**
   bi.biHeight *= atoi(multiplier);
@@ -61,7 +60,7 @@ int main(int argc, char *argv[]) {
 
 
   fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, larptr);
-  fwrite(&bf, sizeof(BITMAPINFOHEADER), 1, larptr);
+  fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, larptr);
 
 
 
@@ -74,21 +73,21 @@ int main(int argc, char *argv[]) {
         for (int k = 0; k < atoi(multiplier); k++)
         {
           fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
+          fseek(smptr, -(sizeof(RGBTRIPLE)), SEEK_CUR);
           fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
         }
 
-
-          fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
+        fseek(smptr, sizeof(RGBTRIPLE), SEEK_CUR);
       }
 
-      for (int p = 0, m = atoi(multiplier); p < m; p++)
-        fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
+      fseek(smptr, small_padding, SEEK_CUR);
 
-      fseek(smptr, padding, SEEK_CUR);
-
-      for (int k = 0; k < padding; k++)
+      for (int q = 0; q < padding; q++)
           fputc(0x00, larptr);
   }
+
+  printf("smal pdng: %d\n", small_padding);
+  printf("large pdng: %d\n", padding);
 
   return 0;
 }
