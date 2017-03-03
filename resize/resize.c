@@ -66,15 +66,15 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
   {
-      RGBTRIPLE triple;
+
       for (int j = 0; j < bi.biWidth; j++)
       {
-
+        RGBTRIPLE triple;
         for (int k = 0; k < atoi(multiplier); k++)
         {
           fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
-          fseek(smptr, -(sizeof(RGBTRIPLE)), SEEK_CUR);
           fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
+          fseek(smptr, -(sizeof(RGBTRIPLE)), SEEK_CUR);
         }
 
         fseek(smptr, sizeof(RGBTRIPLE), SEEK_CUR);
