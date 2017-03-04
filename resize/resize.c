@@ -94,8 +94,5 @@ int main(int argc, char *argv[]) {
     fseek(smptr, (small_padding + sizeof(RGBTRIPLE) * small_width), SEEK_CUR);
   }
 
-  printf("smal pdng: %d\n", small_padding);
-  printf("large pdng: %d\n", padding);
-
   return 0;
 }
