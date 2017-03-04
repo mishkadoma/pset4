@@ -47,6 +47,8 @@ int main(int argc, char *argv[]) {
   }
 
   int small_padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+  int small_height = abs(bi.biHeight);
+  int small_width = bi.biWidth;
 
   //**
   bi.biHeight *= atoi(multiplier);
@@ -64,15 +66,17 @@ int main(int argc, char *argv[]) {
 
 
 
-  for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
+  for (int i = 0, biHeight = abs(small_height); i < biHeight; i++)
   {
-
-      for (int j = 0; j < bi.biWidth; j++)
+    for (int f = 0, repeat_time = atoi(multiplier); f < repeat_time; f++)
+    {
+      for (int j = 0; j < small_width; j++)
       {
-        RGBTRIPLE triple;
         for (int k = 0; k < atoi(multiplier); k++)
         {
+          RGBTRIPLE triple;
           fread(&triple, sizeof(RGBTRIPLE), 1, smptr);
+          printf("pixel number: %d row number: %d\n", k, i);
           fwrite(&triple, sizeof(RGBTRIPLE), 1, larptr);
           fseek(smptr, -(sizeof(RGBTRIPLE)), SEEK_CUR);
         }
@@ -84,6 +88,10 @@ int main(int argc, char *argv[]) {
 
       for (int q = 0; q < padding; q++)
           fputc(0x00, larptr);
+
+      fseek(smptr, -(small_padding + sizeof(RGBTRIPLE) * small_width), SEEK_CUR);
+    }
+    fseek(smptr, (small_padding + sizeof(RGBTRIPLE) * small_width), SEEK_CUR);
   }
 
   printf("smal pdng: %d\n", small_padding);
