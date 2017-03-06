@@ -18,6 +18,6 @@ int main(int argc, char *argv[])
     return 2;
   }
 
-  
-  fread(&jf)
+
+  fread(&xxx, 512, 1, input);
 }
