@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <stdlib.c>
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
-  if (argc != 2)
+  if (argc != 3)
   {
-    fprintf(stderr, "Usage: ./recover image")
+    fprintf(stderr, "Usage: ./recover image\nxxd ");
     return 1;
   }
 
@@ -26,15 +26,22 @@ int main(int argc, char *argv[])
     return 3;
   }
 
-  x = malloc(64);
+  int *x = malloc(512);
 
 
+  while(sizeof(x) == 64)
   {
-
+    printf("sizeof malloc x: %lu", sizeof(x));
+    // copying 512 bytes from infile into outfile
     fread(&x, 64, 1, input);
-    if()
-    fwrite(&x, 64. 1, output);
+
+    // if()
+    // {
+    //
+    // }
+
+    fwrite(&x, 64, 1, output);
   }
 
-
+  return 0;
 }
