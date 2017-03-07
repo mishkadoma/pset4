@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
   }
 
   char *infile = argv[1];
+  char *outfile = argv[2];
 
   FILE *input = fopen(infile, "r");
   if (input == NULL)
@@ -18,6 +19,22 @@ int main(int argc, char *argv[])
     return 2;
   }
 
+  FILE *output = fopen(outfile, "w");
+  if (output == NULL)
+  {
+    fprintf(stderr, "couldn't write to a file%s\n", outfile);
+    return 3;
+  }
 
-  fread(&xxx, 512, 1, input);
+  x = malloc(64);
+
+
+  {
+
+    fread(&x, 64, 1, input);
+    if()
+    fwrite(&x, 64. 1, output);
+  }
+
+
 }
