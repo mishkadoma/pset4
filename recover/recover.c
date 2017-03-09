@@ -3,44 +3,45 @@
 
 int main(int argc, char *argv[])
 {
-  if (argc != 3)
+  if(argc != 2)
   {
-    fprintf(stderr, "Usage: ./recover image\nxxd ");
+    fprintf(stderr, "Usage: ./recover disk\n");
     return 1;
   }
 
   char *infile = argv[1];
-  char *outfile = argv[2];
 
   FILE *input = fopen(infile, "r");
-  if (input == NULL)
+  if(input == NULL)
   {
     fprintf(stderr, "couldn't open %s.\n", infile);
     return 2;
   }
-
-  FILE *output = fopen(outfile, "w");
-  if (output == NULL)
-  {
-    fprintf(stderr, "couldn't write to a file%s\n", outfile);
-    return 3;
-  }
+  // creating file with single jpeg
+  // FILE *output = fopen(real.jpg, "w");
+  // if (output == NULL)
+  // {
+  //   fprintf(stderr, "couldn't write to a file%s\n", outfile);
+  //   return 3;
+  // }
 
   int *x = malloc(512);
 
 
-  while(sizeof(x) == 64)
+  while (1)
   {
-    printf("sizeof malloc x: %lu", sizeof(x));
     // copying 512 bytes from infile into outfile
-    fread(&x, 64, 1, input);
+    fread(&x, 512, 1, input);
+    if (x[0] == 0xff && x[1] == 0xdf && x[2] == 0xff)
+    {
+      do
+      {
+      FILE *output = fopen("file.jpg", "w");
 
-    // if()
-    // {
-    //
-    // }
-
-    fwrite(&x, 64, 1, output);
+      fwrite(&x, 512, 1, output);
+      }
+      while (x != 0);
+    }
   }
 
   return 0;
