@@ -40,8 +40,6 @@ int main(int argc, char *argv[])
         // (int) x == 0xdf &&
         // (int) x[2] == 0xff)
     {
-
-      printf("if x-1 and x-2 and x-3 ...\n");
       do {
         FILE *output = fopen("file.jpg", "w");
         if(input == NULL)
