@@ -34,11 +34,11 @@ int main(int argc, char *argv[])
 
     printf("while cycle starts\n");
     // copying 512 bytes from infile to allocated memory
-    fread(&x, 512, 1, input);
+    fread(x, 512, 1, input);
 
-    if (x[0] == 0xff &&
-        x[1] == 0xdf &&
-        x[2] == 0xff)
+    if ((int) x == 0xff) //&&
+        // (int) x == 0xdf &&
+        // (int) x[2] == 0xff)
     {
 
       printf("if x-1 and x-2 and x-3 ...\n");
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
           return 3;
         }
 
-      fwrite(&x, 512, 1, output);
+      fwrite(x, 512, 1, output);
       } while (x != 0);
     }
   }
