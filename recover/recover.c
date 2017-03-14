@@ -32,13 +32,9 @@ int main(int argc, char *argv[])
     return 3;
   }
 
-  int k = 0;
-  while (1==1)
+  while (1 == 1)
   {
-    k++;
 
-    printf("while cycle starts\n");
-    // copying 512 bytes from infile to allocated memory
     fread(x, 512, 1, input);
 
     if (x[0] == 0xff &&
@@ -47,20 +43,23 @@ int main(int argc, char *argv[])
     {
       do {
         FILE *output = fopen("file.jpg", "w");
-        if (input == NULL)
+        if (output == NULL)
         {
           fprintf(stderr, "couldn't create *.jpg file.\n");
           return 4;
         }
-
-        for (int i = 0; i <= 100; i++)
-        {
+        do {
           fwrite(x, 512, 1, output);
-        }
+        } while(x[0] == 0xff &&
+                x[1] == 0xdf &&
+                x[2] == 0xff);
+        printf("nice! =) \n");
+        free(x);
+        return 5;
+
       }
     }
   }
-  free(x);
 
   return 0;
 }
