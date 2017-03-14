@@ -12,21 +12,13 @@ int main(int argc, char *argv[])
   char *infile = argv[1];
 
   FILE *input = fopen(infile, "r");
-  if(input == NULL)
+  if (input == NULL)
   {
     fprintf(stderr, "couldn't open %s.\n", infile);
-    printf("input file opening\n");
     return 2;
   }
-  // creating file with single jpeg
-  // FILE *output = fopen(real.jpg, "w");
-  // if (output == NULL)
-  // {
-  //   fprintf(stderr, "couldn't write to a file%s\n", outfile);
-  //   return 3;
-  // }
 
-  char *x = malloc(512);
+  int *x = malloc(512);
   if (x == NULL)
   {
     return 3;
@@ -37,9 +29,9 @@ int main(int argc, char *argv[])
 
     fread(x, 512, 1, input);
 
-    if (*x[0].to_i == 0xff &&
-        *x[1].to_i == 0xdf &&
-        *x[2].to_i == 0xff)
+    if (*x == 0xff &&
+      *(x+1) == 0xdf &&
+      *(x+2) == 0xff)
     {
         FILE *output = fopen("file.jpg", "w");
         if (output == NULL)
@@ -49,9 +41,9 @@ int main(int argc, char *argv[])
         }
         do {
           fwrite(x, 512, 1, output);
-        } while(x[0] == 0xff &&
-                x[1] == 0xdf &&
-                x[2] == 0xff);
+        } while(*x == 0xff &&
+              *(x+1) == 0xdf &&
+              *(x+2) == 0xff);
         printf("nice! =) \n");
         free(x);
         return 5;
