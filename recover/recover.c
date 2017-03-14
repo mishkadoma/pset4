@@ -27,10 +27,15 @@ int main(int argc, char *argv[])
   // }
 
   char *x = malloc(512);
+  if (x == NULL)
+  {
+    return 3;
+  }
 
-
+  int k = 0;
   while (1==1)
   {
+    k++;
 
     printf("while cycle starts\n");
     // copying 512 bytes from infile to allocated memory
@@ -42,14 +47,17 @@ int main(int argc, char *argv[])
     {
       do {
         FILE *output = fopen("file.jpg", "w");
-        if(input == NULL)
+        if (input == NULL)
         {
           fprintf(stderr, "couldn't create *.jpg file.\n");
-          return 3;
+          return 4;
         }
 
-      fwrite(x, 512, 1, output);
-      } while (x != 0);
+        for (int i = 0; i <= 100; i++)
+        {
+          fwrite(x, 512, 1, output);
+        }
+      }
     }
   }
   free(x);
