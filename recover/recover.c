@@ -41,11 +41,10 @@ int main(int argc, char *argv[])
     // copying 512 bytes from infile to allocated memory
     fread(x, 512, 1, input);
 
-    if (x[0] == 0xff &&
-        x[1] == 0xdf &&
-        x[2] == 0xff)
+    if (*x[0].to_i == 0xff &&
+        *x[1].to_i == 0xdf &&
+        *x[2].to_i == 0xff)
     {
-      do {
         FILE *output = fopen("file.jpg", "w");
         if (input == NULL)
         {
@@ -58,7 +57,6 @@ int main(int argc, char *argv[])
           fwrite(x, 512, 1, output);
         }
       }
-    }
   }
   free(x);
 
